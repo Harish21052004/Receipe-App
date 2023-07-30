@@ -1,0 +1,381 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+*{
+  padding: 0;
+  margin:0 ;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body{
+  width: 100%;
+}
+
+.navbar_Container{
+  width: 100%;
+  height: 100px;
+  background: rgb(11, 197, 36);
+  position: fixed;
+  display: flex;
+  align-items: center;
+}
+
+.navbar{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar .logo {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+}
+
+.navbar .logo img{
+  width: 50px;
+  margin-bottom: 20px;
+}
+
+.navbar .logo p{
+  padding: 10px;
+  font-size: 30px;
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: 1px;
+}
+
+.navbar .logo p span{
+  color: rgb(255, 140, 0);
+}
+
+.navbar .button{
+  margin: 20px;
+}
+
+.navbar .button button{
+  padding: 10px 20px;
+  font-size: 20px;
+  background: orangered;
+  border: none;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.navbar .button button:hover{
+  background: #fff;
+}
+
+.main{
+  width: 100%;
+  height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image: url("https://wallpaperbat.com/img/12860-pasta-wallpaper-top-free-pasta-background.jpg");
+}
+
+.main  .content{
+  margin: 20px;
+  font-size: 20px;text-align: center;
+  color: #fff;
+}
+
+.main .search-bar{
+  width: 40%;
+  display: flex;
+  align-items: center;
+  background: #ffffffb1;
+  border-radius: 10px;
+}
+
+.main .search-bar input{
+  width: 100%;
+  height: 50px;
+  border: none;
+  background: transparent;
+  padding-left: 20px;
+}
+
+.main .content{
+  font-size: 40px;
+  color: orangered;
+  font-weight: 600;
+}
+.main .search-bar i{
+  padding-right: 20px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.categories{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center; 
+  flex-direction: column;
+}
+
+.categories .container h3{
+  margin-top: 20px;
+  font-size: 30px;
+  letter-spacing: 1px;
+  border-bottom: 1px solid;
+  text-align: center;
+}
+
+.categories .container .list{
+  margin: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.categories .container .list button{
+  margin: 5px;
+  padding: 5px 10px ;
+  border-radius: 5px;
+  border: none;
+  background: orangered;
+  cursor: pointer;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.categorieslist{
+  width: 100%;
+  padding: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.categorieslist .receipedata{
+  width: 250px;
+  height: 280px;
+  border-radius: 5px;
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.13);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: 20px 10px;
+}
+
+.receipedata .image {
+  width:100%;
+  height: 210px;
+}
+
+.receipedata .image img{
+  width: 100%;
+  height: 100%;
+  position: center;
+  size: cover;
+}
+
+.receipedata .name{
+  height: 70px;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  background: rgb(11, 197, 36);
+  cursor: pointer;
+  overflow: calc(100% / 2);
+}
+
+.display{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  -webkit-transform: translate(-50%,-50%);
+  -moz-transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%,-50%);
+  -o-transform: translate(-50%,-50%);
+  color: #fff;
+  width: 90%;
+  height: 90%;
+  overflow-y: scroll;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background: orangered;  
+}
+
+.display .close
+{
+  width: 100%;
+  text-align: right;
+  padding: 20px;
+  top: 90%;
+}
+
+.display .close i{
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.display .title{
+  width: 100%;
+  text-align: center;
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+
+.display .image{
+  width: 200px;
+  height: 200px;
+}
+
+.display .image img{
+  width: 100%;
+  height: 100%;
+  position: center;
+  size: cover;
+  border-radius: 10px;
+  border: 2px solid #fff;
+}
+
+.display .mealcategory{
+  width: 100%;
+  text-align: center;
+  margin: 10px;
+  font-size: 20px;
+}
+
+.display .mealarea{
+  width: 100%;
+  text-align: center;
+  margin: 2px;
+  font-size: 20px;
+}
+
+.display .instructions{
+  width: 100%;
+  padding: 10px 30px;
+  text-align: justify;
+}
+
+.display .instructions a{
+  color: blue;
+}
+
+.display .video{
+  margin: 10px;
+  padding: 20px;
+}
+
+.display .video a{
+  padding: 10px 20px;
+  background: rgb(11, 197, 36);
+  text-decoration: none;
+  border-radius: 10px;
+  transition: all 0.5s ease;
+  color: #fff;
+  font-size: 15px;
+}
+
+.display .video a:hover{
+  background: rgb(6, 232, 36);
+}
+
+.display .links{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 20px;
+  margin-bottom: 30px;
+}
+
+.display .links .share-links i{
+  padding: 10px;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.receipelist{
+  margin: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.receipelist .receipeContainer{
+  width: 250px;
+  height: 320px;
+  margin: 20px;
+}
+
+.receipelist .receipeContainer .image{
+  width: 100%;
+  height: 220px;
+}
+
+.receipelist .receipeContainer .image img{
+  width: 100%;
+  height: 100%;
+}
+
+.receipelist .receipeContainer .receipename{
+  width: 100%;
+  height: 90px;
+  background: rgb(6, 232, 36);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.receipelist .receipeContainer .receipename p{
+  font-size: 20px;
+  text-align: center;
+}
+
+.receipelist .receipeContainer .receipename a{
+  padding: 5px 10px;
+  text-decoration: none;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  color: #fff;
+}
+
+.receipelist .receipeContainer .receipename a:hover{
+  cursor: pointer;
+}
+
+
+footer {
+  background-color: rgb(11, 197, 36);
+  padding: 20px 0;
+  text-align: center;
+}
+
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.container p {
+  margin: 0;
+  font-size: 20px;
+  color: #fff;
+}
+
+
+.savedReceipes{
+  width: 100%;
+  height: 450px;
+  background: red;
+}

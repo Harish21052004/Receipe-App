@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Recipe App</title>
+    <link rel="stylesheet" href="./assets/style/index.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+    <link rel="icon" type="image/x-icon" href="https://cdn-icons-png.flaticon.com/512/1869/1869042.png">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com/dist/email.min.js"></script>
+  <script type="text/javascript">
+    (function(){
+      emailjs.init("nAkjihhNffAsKt6Wl");
+    })();
+ 
+    function sendMail() {
+      var name = document.getElementById("name").value;
+      var email = document.getElementById("email").value;
+      var message = document.getElementById("message").value;
+      var number = document.getElementById("number").value;
+      var valid = true;
+ 
+      if (name.trim() === "") {
+        alert("Please enter your name");
+        valid = false;
+      }
+ 
+       else if (email.trim() === "") {
+        alert("Please enter your email");
+        valid = false;
+      } else if (!validateEmail(email)) {
+        alert("Please enter a valid email address");
+        valid = false;
+      }
+ 
+      else if (message.trim() === "") {
+        alert("Please enter your message");
+        valid = false;
+      }
+ 
+     else if (number.trim() === "") {
+        alert("Please enter your mobile number");
+        valid = false;
+      } else if (!validatePhoneNumber(number)) {
+        alert("Please enter a valid phone number");
+        valid = false;
+      }
+ 
+      if (valid) {
+        var params = {
+          name: name,
+          email: email,
+          message: message,
+          number: number
+        };
+ 
+        const serviceID = "service_pxthz8b";
+        const templateID = "template_oltz14i";
+ 
+        emailjs.send(serviceID, templateID, params)
+          .then(function(response) {
+            console.log("SUCCESS", response);
+            alert("Your message has been sent successfully!");
+            window.location.href="index.html";
+          }, function(error) {
+            console.log("FAILED", error);
+            alert("Sorry, there was an error sending your message. Please try again later.");
+          });
+      }
+    }
+ 
+    function validateEmail(email) {
+      // Regular expression for email validation
+      var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return emailRegex.test(email);
+    }
+ 
+    function validatePhoneNumber(number) {
+      // Regular expression for phone number validation
+      var numberRegex = /^\d{10}$/;
+      return numberRegex.test(number);
+    }
+  </script>
+  </head>
+  <body>
+    <section class="navbar_Container">
+      <nav class="navbar">
+        <div class="logo">
+          <img src="images/logo.png" alt="logo">
+          <p>Cook.<span>io</span></p>
+        </div>
+    
+        <div class="button">
+         <a href="#contact"> <button>Contact Us</button></a>
+        </div>
+      </nav>
+    </section>
+
+    <section class="main">
+      <div class="content">
+        Find a Receipe
+      </div>
+      <div class="search-bar">
+        <input type="text" placeholder="Search Here..." id="receipe-name">
+        <i class="fas fa-search" onclick="searchByReceipe()"></i>
+      </div>
+    </section>
+
+    <section class="receipelist" id="receipeDatas">
+      <!-- <div class="receipeContainer">
+        <div class="image">
+          <img src="https://edamam-product-images.s3.amazonaws.com/web-img/a10/a10f6ced8049a69882b1d8d69bc7a32a.jpg?X-Amz-Security-Token=IQoJb3JpZ2luX2VjEHMaCXVzLWVhc3QtMSJGMEQCIHR7XMSvlaSj8Wa8XVt7onjsKPrtTztpypBLv62jEtk3AiAPhpN0dyDaJbroP87WaPCLY9B5R%2B7Ut0natZvWyoFa7SrCBQi7%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F8BEAAaDDE4NzAxNzE1MDk4NiIMzT5SuYxJIFLchAjxKpYFlB%2FV2D%2FAJgx5EyyBMGTLgQd3C6x0SvJMDjiNd6VoloNBio1a%2FggK4Nr7KGxUcjJM8cF6fwhCCYjfLsNgM1iWl9fSn8LKlXuFSTBkfjIK9YdgJOqil7dQechVpBBFOApJPc08JbpFntbgUbI5Zxv4PvPI%2F7y2FnCvovek97ZNM5ku3Lp1FcBEQTnAovbW0oTXOaAj8CR908v7e22wf4xAp243STzODklTgw4LwRvMezr%2FEOcSfjOUrhyxBItkDBUXZqj4KHN8OWsweasjsroQ8SHRE%2F9szCsnj%2BfSpt0%2FLa%2FYUJmEVQgFvBx2YNnSRg9p0VKTmzt4gj0sXZyAO0gJhgjjDW4u3CcRAkrvZrBG1qYY%2BYC%2FxpmUb9lzmQUJ4eFPucAJP5A0bDxvpf1W4iamxsWqintpSj%2F5Im%2B14%2B70sv6lgOg00FR7M2h0m6ItxqLAyywGf6SFXuIHnKknPm7JNMrAaflaY9ZH5ZRaqeCbq6O3MF3N71L0qFhRCM1aKFSY8nMuretSeIA%2F9mi%2BOVBHUqLDfktsKdey572vicmD%2FpyAp%2F93Y5LxDGnpZuPlLr5NEXRuonf1ZpxCrQPO3vmgfyJfVtuF233AOkboRIwwSNygmAjn6MFUA8aWghkG85Xrk8TAAJ%2B%2BslLvWQ%2BkFjQRatELsjQQzb7diGlyakuD1qDZnLeEFnSiUNkMlhcfGG8trwx91oCVxgOLocbSY6fz5FoabpBG7KRnJV6HHEc4A9rC0cP8K7KODgFy3QgwPfBEN1BvxepqXbFBQcTuPFcXkCF%2BB6%2FkVW1h3OJUaySRWcPamtxwP3lG25ieXo6gpwwfdq2ke9BbLUPNbz1RfjFbi0yjDWMrlRqv0XdaAUByzrNZlpS5Q%2Bow7biWpAY6sgGP96hbvv51HHf7oaXSYdchxzfhfIT0edrd%2FnhfH674XllWuV922ysEH7cnsz%2Bmgk2BAGYYseWj5QYOpOfK3026a0p1%2FbBajOHiCUdndNIyjspcpNAIWxPR1FVyzqgIxqzywLMJUk4ZuSP38JiI5OuHFeRGGYadHjXqca39OHi%2FLAAFPucjWbbVefy8m92mmfki3MO7Cz0drNy%2BnL2nePoOtbCyvlO9uCGhOYaHzsgzKQJ8&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20230611T111249Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=ASIASXCYXIIFCXCSHJXU%2F20230611%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=28930cc643d1fb31a84002cf48332d432b4a4c49ef9f726702a9ad77f3066df2" alt="receipe">
+        </div>
+        <div class="receipename">
+          <p>Biriyani <i style="margin-left:10px;" class="far fa-bookmark" onclick="callParent()"></i> </p>
+          <a href="" target="_blank"> View Receipe</a>          
+        </div>
+      </div> -->
+    </section>
+    
+
+    <section class="categories">
+      <div class="container">
+        <h3>Search By Famous Categories</h3>
+        <div class="list">
+          <button value="Breakfast" onclick="callByCategories(value)">Breakfast</button>
+          <button value="Chicken" onclick="callByCategories(value)">Chicken</button>
+          <button value="Dessert" onclick="callByCategories(value)">Dessert</button>
+          <button value="Vegetarian" onclick="callByCategories(value)">Vegetarian</button>
+        </div>
+        <div class="list">
+          <button value="Vegan" onclick="callByCategories(value)">Vegan</button>
+          <button value="Side" onclick="callByCategories(value)">Side</button>
+          <button value="Seafood" onclick="callByCategories(value)">Seafood</button>
+          <button value="Pasta" onclick="callByCategories(value)">Pasta</button>
+        </div>
+        <div class="list">
+          <button value="Miscellaneous" onclick="callByCategories(value)">Miscellaneous</button>
+          <button value="Lamb" onclick="callByCategories(value)">Lamb</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="categorieslist" id="categorieslist">
+      <!-- <div class="receipedata">
+        <div class="image">
+          <img src="https://www.themealdb.com/images/media/meals/1550441275.jpg" alt="image">
+        </div>
+        <div class="name" onclick="showDetails()">Egg</div>
+      </div> -->
+    </section>
+
+    <section class="categories">
+      <div class="container">
+        <h3>Search By Famous Area</h3>
+        <div class="list">
+          <button value="American" onclick="callByArea(value)">American</button>
+          <button value="British" onclick="callByArea(value)">British</button>
+          <button value="Chinese" onclick="callByArea(value)">Chinese</button>
+          <button value="Egyptian" onclick="callByArea(value)">Egyptian</button>
+          <button value="French" onclick="callByArea(value)">French</button>
+        </div>
+        <div class="list">
+          <button value="Canadian" onclick="callByArea(value)">Canadian</button>
+          <button value="Japanese" onclick="callByArea(value)">Japanese</button>
+          <button value="Mexican" onclick="callByArea(value)">Mexican</button>
+          <button value="Tunisian" onclick="callByArea(value)">Tunisian</button>
+          <button value="Italian" onclick="callByArea(value)">Italian</button>
+          <button value="Jamaican" onclick="callByArea(value)">Jamaican</button>
+        </div>
+        <div class="list">
+          <button value="Croatian" onclick="callByArea(value)">Croatian</button>
+          <button value="Dutch" onclick="callByArea(value)">Dutch</button>
+          <button value="Filipino" onclick="callByArea(value)">Filipino</button>
+          <button value="Greek" onclick="callByArea(value)">Greek</button>
+          <button value="Indian" onclick="callByArea(value)">Indian</button>          
+          <button value="Japanese" onclick="callByArea(value)">Japanese</button>
+          <button value="Kenyan" onclick="callByArea(value)">Kenyan</button>
+        </div>
+        <div class="list">
+          <button value="Polish" onclick="callByArea(value)">Polish</button>
+          <button value="Russian" onclick="callByArea(value)">Russian</button>
+          <button value="Spanish" onclick="callByArea(value)">Spanish</button>
+          <button value="Thai" onclick="callByArea(value)">Thai</button>
+          <button value="Tunisian" onclick="callByArea(value)">Tunisian</button>
+          <button value="Unknown" onclick="callByArea(value)">Unknown</button>
+        </div>
+        <div class="list">
+          <button value="Malaysian" onclick="callByArea(value)">Malaysian</button>
+          <button value="Turkish" onclick="callByArea(value)">Turkish</button>
+          <button value="Moroccan" onclick="callByArea(value)">Moroccan</button>
+          <button value="Vietnamese" onclick="callByArea(value)">Vietnamese</button>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="categorieslist" id="arealist">
+      <!-- <div class="receipedata">
+        <div class="image">
+          <img src="https://www.themealdb.com/images/media/meals/1550441275.jpg" alt="image">
+        </div>
+        <div class="name" onclick="showDetails()">Egg</div>
+      </div> -->
+    </section>
+
+<div class="popup" id="popup"></div>
+
+<div class="container col-md-7 border mt-3 bg-light" id="contact" data-aos="zoom-in" data-aos-duration="1000" >
+  <div class="row">
+    <div class="col-md-6 p-5 bg-success text-white">
+      <h1>Let's connect with us!</h1>
+      <img src="images/contact.jpeg" style="width: 80%; height:60%; position: center; size: cover">
+    
+    </div>
+    <div class="col-md-6 border-left py-3" >
+      <h1>Contact form</h1>
+      <div class="form-group">
+        <h5 for="name">Name</h5>
+        <input 
+          type="text" required
+          class="form-control"
+          id="name" 
+          placeholder="Enter name"
+        />
+      </div>
+      <div class="form-group">
+        <h5 for="email">Email</h5>
+        <input
+          type="email" required
+          class="form-control"
+          id="email" 
+          placeholder="Enter email"
+        />
+      </div>
+      <div class="form-group">
+        <h5 for="number">Mobile Number</h5>
+        <input
+          type="number"
+          class="form-control"
+          id="number" required
+          placeholder="Enter Mobile Number"
+        />
+      </div>
+      <div class="form-group">
+        <h5 for="message">Message</h5>
+        <textarea class="form-control" id="message" 
+      rows="3"></textarea>
+      </div>
+      <button class="btn btn-primary"  style="background: orangered;" onclick="sendMail()">Submit</button>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <p>&copy; 2023 Recipe App. All rights reserved.</p>
+  </div>
+</footer>
+
+   <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+   <script>
+     AOS.init();
+   </script>
+
+  <script src="./assets/script/index.js"></script>
+  </body>
+</html>
